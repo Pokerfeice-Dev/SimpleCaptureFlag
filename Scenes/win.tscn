@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bskhwcu7mi4y1"]
+
+[ext_resource type="Texture2D" uid="uid://byewi62gek78f" path="res://Resources/Facilito.png" id="1_3mm25"]
+[ext_resource type="AudioStream" uid="uid://bu385y8vje3uu" path="res://Sound/menu_music.mp3" id="2_611cj"]
+[ext_resource type="Script" uid="uid://bv0w8taebsetu" path="res://Scripts/button.gd" id="3_611cj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g1l0l"]
+font_size = 146
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3mm25")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 433.0
+offset_right = 911.0
+offset_bottom = 633.0
+text = "FACILITO"
+label_settings = SubResource("LabelSettings_g1l0l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_611cj")
+autoplay = true
+parameters/looping = true
+
+[node name="menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 395.0
+offset_right = 631.0
+offset_bottom = 426.0
+text = "MENU"
+script = ExtResource("3_611cj")
+
+[node name="credits" type="Button" parent="."]
+offset_left = 527.0
+offset_top = 430.0
+offset_right = 631.0
+offset_bottom = 461.0
+text = "CREDITOS"
+script = ExtResource("3_611cj")
+
+[connection signal="pressed" from="menu" to="menu" method="_on_menu_pressed"]
+[connection signal="pressed" from="credits" to="menu" method="_on_credits_pressed"]

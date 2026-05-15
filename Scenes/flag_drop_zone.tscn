@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddyjgedjy8j3j"]
+
+[ext_resource type="Texture2D" uid="uid://bfa0ei08gptc5" path="res://Resources/Dropflag.png" id="1_owcqx"]
+[ext_resource type="Script" uid="uid://bis4enh045ijx" path="res://Scripts/FlagDropZone.gd" id="2_f8waa"]
+[ext_resource type="PackedScene" uid="uid://bskhwcu7mi4y1" path="res://Scenes/win.tscn" id="3_u11ps"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8waa"]
+size = Vector2(11.4, 8.8)
+
+[node name="FlagDropZone" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_owcqx")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_f8waa")
+win_scene = ExtResource("3_u11ps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 4)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_f8waa")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
