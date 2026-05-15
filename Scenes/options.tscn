@@ -49,6 +49,6 @@ offset_left = 340.0
 offset_top = 250.0
 offset_right = 848.0
 offset_bottom = 273.0
-text = "WORKING IN PROGRESS. Gracias por la paciencia. Arigato gosaimas"
+text = "WORK IN PROGRESS. Thank you for your patience."
 
 [connection signal="pressed" from="back" to="back" method="_on_back_pressed"]

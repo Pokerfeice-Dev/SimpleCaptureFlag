@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpx3apr1vwxj1"]
+
+[ext_resource type="Texture2D" uid="uid://4yb400l0ofun" path="res://Resources/victory.png" id="1_7nenk"]
+[ext_resource type="AudioStream" uid="uid://bu385y8vje3uu" path="res://Sound/menu_music.mp3" id="2_gr0mm"]
+[ext_resource type="Script" uid="uid://bv0w8taebsetu" path="res://Scripts/button.gd" id="3_d23bn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q416v"]
+font_size = 146
+
+[sub_resource type="Animation" id="Animation_611cj"]
+resource_name = "win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g1l0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xxyo"]
+_data = {
+&"RESET": SubResource("Animation_g1l0l"),
+&"win": SubResource("Animation_611cj")
+}
+
+[node name="next_level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_7nenk")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 433.0
+offset_right = 911.0
+offset_bottom = 633.0
+text = "VICTORY"
+label_settings = SubResource("LabelSettings_q416v")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gr0mm")
+autoplay = true
+parameters/looping = true
+
+[node name="next_level" type="Button" parent="."]
+offset_left = 527.0
+offset_top = 395.0
+offset_right = 631.0
+offset_bottom = 426.0
+text = "Next Level"
+script = ExtResource("3_d23bn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3xxyo")
+}
+autoplay = "win"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="next_level" to="next_level" method="_on_pressed_next_level"]

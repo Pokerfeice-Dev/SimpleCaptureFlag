@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cfq4e7b53j2a1"]
+[gd_scene format=3 uid="uid://cfq4e7b53j2a1"]
 
 [ext_resource type="Script" uid="uid://c1rlhqhxxbbd" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://c24mxjcm57fau" path="res://Enemy/Reptile/Reptile.png" id="1_hghv2"]
@@ -195,36 +195,38 @@ size = Vector2(29, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afpow"]
 size = Vector2(15, 16)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" unique_id=2119548486]
 script = ExtResource("1_1f0kj")
+speed = 75.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1689709285]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ne65n")
 animation = &"Idle_up"
 
-[node name="Detection_area" type="Area2D" parent="."]
+[node name="Detection_area" type="Area2D" parent="." unique_id=39848211]
+scale = Vector2(0.9, 0.9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area" unique_id=1411480433]
 scale = Vector2(25, 25)
 shape = SubResource("RectangleShape2D_1f0kj")
 
-[node name="Hit_area" type="Area2D" parent="."]
+[node name="Hit_area" type="Area2D" parent="." unique_id=1477554347]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_area" unique_id=1100131120]
 position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_vh8xy")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1119876625]
 visible = false
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_afpow")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=283025440]
 wait_time = 3.0
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1729270582]
 stream = ExtResource("3_afpow")
 volume_db = -3.0
 pitch_scale = 4.0

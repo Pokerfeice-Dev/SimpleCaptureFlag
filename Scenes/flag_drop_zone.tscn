@@ -1,24 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddyjgedjy8j3j"]
+[gd_scene format=3 uid="uid://ddyjgedjy8j3j"]
 
 [ext_resource type="Texture2D" uid="uid://bfa0ei08gptc5" path="res://Resources/Dropflag.png" id="1_owcqx"]
 [ext_resource type="Script" uid="uid://bis4enh045ijx" path="res://Scripts/FlagDropZone.gd" id="2_f8waa"]
-[ext_resource type="PackedScene" uid="uid://bskhwcu7mi4y1" path="res://Scenes/win.tscn" id="3_u11ps"]
+[ext_resource type="LabelSettings" uid="uid://ddffvm2cl5tbq" path="res://PokerStudio/Shadow.tres" id="4_e8ojj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8waa"]
 size = Vector2(11.4, 8.8)
 
-[node name="FlagDropZone" type="Node2D"]
+[sub_resource type="Animation" id="Animation_e8ojj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[sub_resource type="Animation" id="Animation_rmrlp"]
+resource_name = "Trae"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vjrgc"]
+_data = {
+&"RESET": SubResource("Animation_e8ojj"),
+&"Trae": SubResource("Animation_rmrlp")
+}
+
+[node name="FlagDropZone" type="Node2D" unique_id=619006179]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=757143049]
 texture = ExtResource("1_owcqx")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=2029826155]
 script = ExtResource("2_f8waa")
-win_scene = ExtResource("3_u11ps")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=712364496]
 position = Vector2(1.5, 4)
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_f8waa")
+
+[node name="Label" type="Label" parent="." unique_id=168784765]
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 93.0
+offset_bottom = -46.0
+text = "Flag Basement"
+label_settings = ExtResource("4_e8ojj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1243631949]
+libraries/ = SubResource("AnimationLibrary_vjrgc")
+autoplay = &"Trae"
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

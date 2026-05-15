@@ -8,17 +8,19 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="CapturaLaBandera"
+config/name="CaptureTheFlag"
 run/main_scene="uid://w6dc14703cha"
-config/features=PackedStringArray("4.4", "GL Compatibility")
-boot_splash/image="uid://ceb4x4hxu6je2"
-boot_splash/minimum_display_time=3000
+config/features=PackedStringArray("4.6", "GL Compatibility")
 
-[display]
+[autoload]
 
-window/size/resizable=false
+Global="*res://Global.gd"
 
 [input]
 
